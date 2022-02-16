@@ -2,27 +2,21 @@ import './App.css';
 import Header from './Header';
 import AddContact from './AddContact';
 import ContactList from './ContactList';
+import React,{useState, useEffect} from 'react';
+
 
 function App() {
-  const Contacts = [
-    {
-      id:"1",
-      name:"Dipesh",
-      email: "sample@gmail.com"
+  const [contacts, setContacts] = useState([]);
+  const addContactHandler = (contact)=>{
+    setContacts([...contacts,  contact ]);
+  }
+ 
 
-    },
-    {
-      id:"2",
-      name:"Dipesh2",
-      email: "sample2@gmail.com"
-
-    },
-  ]
   return (
     <div className='ui container'>
       <Header/>
-      <AddContact/>    
-      <ContactList contacts = {Contacts}></ContactList> 
+      <AddContact addContactHandler={addContactHandler} />    
+      <ContactList contacts={contacts} ></ContactList> 
     </div>
   );
 }
